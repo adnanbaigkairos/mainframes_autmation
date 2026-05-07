@@ -20,7 +20,7 @@ app = FastAPI(title="Mainframe AI Agent")
 executor = None
 runtime_error = None
 try:
-    ehllapi = EHLLAPI()
+    ehllapi = EHLLAPI(dll_name=settings.ehllapi_dll_path or "ehlapi32.dll")
     session = SessionManager(ehllapi, session_id=settings.session_id)
     session.ensure_connected()
     parser = ScreenParser(width=settings.screen_width)

@@ -24,7 +24,7 @@ def run_discovery(max_depth: int = 3) -> dict[str, str]:
     )
     launcher.launch()
 
-    ehllapi = EHLLAPI()
+    ehllapi = EHLLAPI(dll_name=settings.ehllapi_dll_path or "ehlapi32.dll")
     session = SessionManager(ehllapi, session_id=settings.session_id)
     session.ensure_connected()
 

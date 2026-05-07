@@ -24,6 +24,7 @@ class Settings(BaseModel):
             r"C:\ProgramData\IBM\Personal Communications\IBMPLEX - IBMESYS.ws",
         )
     )
+    ehllapi_dll_path: str = Field(default_factory=lambda: os.getenv("EHLLAPI_DLL_PATH", ""))
     session_id: str = Field(default_factory=lambda: os.getenv("MAINFRAME_SESSION_ID", "A"))
     screen_width: int = Field(default_factory=lambda: int(os.getenv("MAINFRAME_SCREEN_WIDTH", "80")))
     screen_height: int = Field(default_factory=lambda: int(os.getenv("MAINFRAME_SCREEN_HEIGHT", "24")))
