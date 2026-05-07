@@ -23,7 +23,10 @@ def build_router(executor=None, runtime_error: str | None = None) -> APIRouter:
                 status_code=503,
                 detail=runtime_error or "Mainframe runtime is not initialized.",
             )
-        plan = executor.execute(payload.instruction)
+        try:
+            plan = executor.execute(payload.instruction)
+        except RuntimeError as exc:
+            raise HTTPException(status_code=503, detail=str(exc)) from exc
         return plan.model_dump()
 
     return router

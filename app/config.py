@@ -31,6 +31,7 @@ class Settings(BaseModel):
     action_timeout_seconds: float = Field(
         default_factory=lambda: float(os.getenv("MAINFRAME_ACTION_TIMEOUT_SECONDS", "1.0"))
     )
+    blank_screen_retries: int = Field(default_factory=lambda: int(os.getenv("MAINFRAME_BLANK_SCREEN_RETRIES", "3")))
     logfire_token: str = Field(default_factory=lambda: os.getenv("LOGFIRE_TOKEN", ""))
     data_dir: Path = Field(default_factory=lambda: Path(os.getenv("DATA_DIR", "data")))
     reports_dir: Path = Field(default_factory=lambda: Path(os.getenv("REPORTS_DIR", "reports")))

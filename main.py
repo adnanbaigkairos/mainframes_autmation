@@ -26,7 +26,12 @@ try:
     parser = ScreenParser(width=settings.screen_width)
     navigator = Navigator(ehllapi, parser, wait_seconds=settings.action_timeout_seconds)
     planner = AIPlanner(api_key=settings.openai_api_key, model=settings.openai_model)
-    executor = AgentExecutor(planner, navigator, parser)
+    executor = AgentExecutor(
+        planner,
+        navigator,
+        parser,
+        blank_screen_retries=settings.blank_screen_retries,
+    )
 except Exception as exc:
     runtime_error = str(exc)
     log.warning("Mainframe runtime initialization failed: {error}", error=runtime_error)
